@@ -276,3 +276,13 @@ interface FastEthernet0/0.30
 - Configurar DHCP y DNS en Windows Server 2019.
 - Aplicar y probar las ACL VENTAS_IN y SOPORTE_IN.
 - Ensayar la demostración completa de 15 minutos.
+
+## CAMBIO DE DECISIÓN (19-nov-2026): DHCP en R1 y R2 en vez de Windows Server
+
+- **Motivo:** Windows Server 2019 (10.1.100.10) no pudo autorizar DHCP en Active Directory. Errores: "El servicio DHCP no puede establecer contacto con Active Directory" en la consola, y `Add-DhcpServerInDC` devuelve `PermissionDenied` ("No se pudieron inicializar los recursos de servicio de directorio para el dominio technomarket.lan"). `nltest /dsgetdc:technomarket.lan` sí encuentra el DC, así que AD y DNS funcionan; el bloqueo está en los permisos de inicialización de DHCP. Se intentó: reinicio del servicio, reinicio del servidor, `netsh dhcp add securitygroups`, `netsh dhcp add server`.
+- **Decisión:** DHCP lo sirve R1 con `ip dhcp pool`. Windows Server queda solo como DNS y controlador de dominio (`intranet.technomarket.lan` → 10.1.100.20).
+- **Santiago (VLAN 10 y 40):** conectados a R1, pools locales en R1, sin relay.
+- **Valparaíso (VLAN 20, 30 y 50):** R2 hace relay a R1 con `ip helper-address 10.255.12.1` (antes apuntaba a 10.1.100.10).
+- **Exclusiones:** 10.x.x.1 a 10.x.x.99 en cada subred. Pools de .100 a .200 por defecto de IOS.
+- **Pendiente para la presentación:** explicar que el DHCP está en el router por limitación de autorización de AD, y que el Windows Server cumple como DNS y controlador de dominio.
+- Los comentarios "CAMBIO 19-nov-2026" en los archivos de configuración indican exactamente qué cambió.

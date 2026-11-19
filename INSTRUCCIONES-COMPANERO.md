@@ -51,7 +51,7 @@ Si no ves vecinos, revisa `show ip interface brief` y que FastEthernet0/1 esté 
 1. Asignar IP estática 10.1.100.20 a Ubuntu (Netplan) cuando esté conectada a GNS3 en VLAN 100.
 2. Publicar el sitio en nginx para `intranet.technomarket.lan` (nginx ya está instalado y activo). Anota usuario y contraseña en un lugar privado, no en el repositorio.
 3. Conectar Windows Server (10.1.100.10) a Switch1 en VLAN 100, y Windows 10 a una VLAN de cliente.
-4. En Windows Server: instalar DHCP con un ámbito por VLAN de cliente (10, 40, 20, 30 y 50) y DNS con la zona `technomarket.lan`.
+4. En Windows Server: DNS con la zona `technomarket.lan` (creada al promover el DC) y el registro `intranet` → 10.1.100.20. **DHCP ya no va en Windows Server**: R1 y R2 sirven DHCP (ver CAMBIO en contexto-desafio-8.md).
 5. Probar el relay: un cliente de Valparaíso debe obtener IP desde Windows Server a través de R2 (`ip helper-address 10.1.100.10`).
 6. Aplicar las ACL `VENTAS_IN` y `SOPORTE_IN` (borrador en `contexto-desafio-8.md`, sección 6) y probar tráfico permitido y denegado.
 7. Ensayar la demostración de 15 minutos. El profesor puede cambiar algo en vivo: practica al menos una VLAN nueva y un cambio de ACL.
@@ -59,3 +59,6 @@ Si no ves vecinos, revisa `show ip interface brief` y que FastEthernet0/1 esté 
 ## 7. Notas
 - No subas contraseñas, ISO, imágenes de Cisco ni discos de VM al repositorio.
 - Cualquier cambio a la configuración de R1 o R2, guárdalo con `write memory` y actualiza `gns3-project/` para que quede sincronizado.
+
+## Cambio 19-nov-2026
+- DHCP movido a R1 (pools por VLAN) porque Windows Server no pudo autorizar DHCP en AD. R2 hace relay a R1 (10.255.12.1). Detalles en contexto-desafio-8.md.

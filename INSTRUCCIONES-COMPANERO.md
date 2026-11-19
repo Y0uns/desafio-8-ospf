@@ -1,0 +1,61 @@
+# Instrucciones para el compañero: Desafío 8 (OSPF entre sedes)
+
+Este documento explica cómo abrir el proyecto, en qué estado está y qué falta. Lee primero `contexto-desafio-8.md`.
+
+## 1. Requisitos
+- GNS3 2.2.55.
+- Imagen Cisco `c2691-adventerprisek9_sna-mz.124-13b.image` (no está en el repositorio; la consigues con el profesor o en el aula virtual).
+- VMware Workstation 25H2, con Windows Server 2019, Windows 10 y Ubuntu 22.04.5 Desktop.
+
+## 2. Abrir el proyecto en GNS3
+1. Instala la imagen Cisco como plantilla Dynamips c2691 con 192 MiB de RAM.
+2. Copia la carpeta `gns3-project/` a tu equipo.
+3. En GNS3: File > Open project > `Desafio8-OSPF.gns3`.
+4. Si la plantilla te pide otra ruta de imagen, corrígela en la plantilla del router.
+5. Enciende R1 y R2 (Start all).
+
+## 3. Verificar que OSPF funciona
+Abre la consola de cada router (clic derecho > Console) y ejecuta:
+
+**En R1:**
+- `show ip ospf neighbor`: debe aparecer 2.2.2.2 en FULL por FastEthernet0/1.
+- `show ip route ospf`: debe mostrar 10.2.20.0/24, 10.2.30.0/24 y 10.2.50.0/24 vía 10.255.12.2.
+
+**En R2:**
+- `show ip ospf neighbor`: debe aparecer 1.1.1.1 en FULL.
+- `show ip route ospf`: debe mostrar 10.1.10.0/24, 10.1.40.0/24 y 10.1.100.0/24 vía 10.255.12.1.
+
+Si no ves vecinos, revisa `show ip interface brief` y que FastEthernet0/1 esté `up/up` en ambos.
+
+## 4. Consideraciones importantes
+- **Bodega (10.2.50.0/24):** en la configuración guardada de R2 ya está anunciada. La prueba 7 de la demostración pide que R1 NO tenga ruta a esa red antes de anunciarla. Antes de probar, quita el anuncio en R2:
+  ```
+  configure terminal
+  router ospf 1
+  no network 10.2.50.0 0.0.0.255 area 0
+  end
+  ```
+  Luego vuelve a anunciarla durante la demostración con `network 10.2.50.0 0.0.0.255 area 0`.
+- **No guardes Bodega sin decidirlo:** si haces `write memory` con Bodega anunciada, la prueba 7 no se puede mostrar después de reiniciar.
+- Las interfaces de las VLAN de clientes (10, 40, 20, 30 y 50) son pasivas. Eso es correcto: no deben formar adyacencias.
+
+## 5. Estado de la infraestructura
+- **Switches de GNS3:** Switch1 y Switch2 ya tienen las VLAN de acceso y el troncal configurados (ver `contexto-desafio-8.md`, sección 4).
+- **VMware:**
+  - Windows Server 2019: instalada, con su sesión iniciada. Hoy usa NAT; hay que cambiarla a la red que conecte con GNS3.
+  - Windows 10 x64: instalada, apagada. Usa NAT.
+  - Ubuntu 22.04: en instalación. Está en la red VMnet2 (solo host, sin DHCP, 192.168.71.0/24).
+- **Conexión VMware <-> GNS3:** pendiente.
+
+## 6. Qué falta (en orden)
+1. Terminar la instalación de Ubuntu. Usuario y contraseña: los decides tú, pero anótalos en un lugar privado, no en el repositorio.
+2. Asignar IP estática 10.1.100.20 a Ubuntu e instalar nginx. Publicar un sitio para `intranet.technomarket.lan`.
+3. Conectar Windows Server (10.1.100.10) a Switch1 en VLAN 100, y Windows 10 a una VLAN de cliente.
+4. En Windows Server: instalar DHCP con un ámbito por VLAN de cliente (10, 40, 20, 30 y 50) y DNS con la zona `technomarket.lan`.
+5. Probar el relay: un cliente de Valparaíso debe obtener IP desde Windows Server a través de R2 (`ip helper-address 10.1.100.10`).
+6. Aplicar las ACL `VENTAS_IN` y `SOPORTE_IN` (borrador en `contexto-desafio-8.md`, sección 6) y probar tráfico permitido y denegado.
+7. Ensayar la demostración de 15 minutos. El profesor puede cambiar algo en vivo: practica al menos una VLAN nueva y un cambio de ACL.
+
+## 7. Notas
+- No subas contraseñas, ISO, imágenes de Cisco ni discos de VM al repositorio.
+- Cualquier cambio a la configuración de R1 o R2, guárdalo con `write memory` y actualiza `gns3-project/` para que quede sincronizado.

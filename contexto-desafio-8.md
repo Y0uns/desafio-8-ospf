@@ -242,7 +242,7 @@ interface FastEthernet0/0.30
 - VMware:
   - Windows Server 2019: encendida, con sesión iniciada. Adaptador en NAT (pendiente de cambiar a la red que se use con GNS3).
   - Windows 10 x64: apagada. Adaptador en NAT.
-  - Ubuntu 22.04: en instalación desde el ISO `ubuntu-22.04.5-desktop-amd64.iso`, adaptador VMnet2.
+  - Ubuntu 22.04: instalado. nginx activo. Sin IP estática todavía. Se usó temporalmente el adaptador NAT para descargar nginx; debe volver a VMnet2 o a la red de GNS3.
 - Conexión VMware <-> GNS3: pendiente. Se planea un nodo Cloud en GNS3 enlazado a VMnet2, o usar otra VMnet.
 
 ## 9. Pruebas para la demostración
@@ -272,7 +272,7 @@ interface FastEthernet0/0.30
 ## 10. Pendientes
 - Decidir si Bodega se anuncia desde el inicio o en vivo, y guardar la configuración de acuerdo a eso.
 - Cambiar el adaptador de Windows Server 2019 y Windows 10 a la red que conecte con GNS3.
-- Terminar la instalación de Ubuntu y configurar IP estática 10.1.100.20 y nginx.
+- Configurar IP estática 10.1.100.20 en Ubuntu y publicar el sitio `intranet.technomarket.lan` en nginx.
 - Configurar DHCP y DNS en Windows Server 2019.
 - Aplicar y probar las ACL VENTAS_IN y SOPORTE_IN.
 - Ensayar la demostración completa de 15 minutos.

@@ -44,12 +44,12 @@ Si no ves vecinos, revisa `show ip interface brief` y que FastEthernet0/1 esté 
 - **VMware:**
   - Windows Server 2019: instalada, con su sesión iniciada. Hoy usa NAT; hay que cambiarla a la red que conecte con GNS3.
   - Windows 10 x64: instalada, apagada. Usa NAT.
-  - Ubuntu 22.04: en instalación. Está en la red VMnet2 (solo host, sin DHCP, 192.168.71.0/24).
+  - Ubuntu 22.04: instalado, con nginx activo (`systemctl status nginx` muestra `active (running)`). Todavía no tiene IP estática 10.1.100.20. Para descargar nginx se usó temporalmente el adaptador NAT; antes de conectar a GNS3 debe volver a VMnet2 o a la red del nodo Cloud.
 - **Conexión VMware <-> GNS3:** pendiente.
 
 ## 6. Qué falta (en orden)
-1. Terminar la instalación de Ubuntu. Usuario y contraseña: los decides tú, pero anótalos en un lugar privado, no en el repositorio.
-2. Asignar IP estática 10.1.100.20 a Ubuntu e instalar nginx. Publicar un sitio para `intranet.technomarket.lan`.
+1. Asignar IP estática 10.1.100.20 a Ubuntu (Netplan) cuando esté conectada a GNS3 en VLAN 100.
+2. Publicar el sitio en nginx para `intranet.technomarket.lan` (nginx ya está instalado y activo). Anota usuario y contraseña en un lugar privado, no en el repositorio.
 3. Conectar Windows Server (10.1.100.10) a Switch1 en VLAN 100, y Windows 10 a una VLAN de cliente.
 4. En Windows Server: instalar DHCP con un ámbito por VLAN de cliente (10, 40, 20, 30 y 50) y DNS con la zona `technomarket.lan`.
 5. Probar el relay: un cliente de Valparaíso debe obtener IP desde Windows Server a través de R2 (`ip helper-address 10.1.100.10`).

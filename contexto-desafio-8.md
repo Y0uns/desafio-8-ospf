@@ -306,3 +306,9 @@ interface FastEthernet0/0.30
 - ACL aplicadas en R2 y probadas: VENTAS_IN bloquea 10.2.20.0/24 → 10.1.10.0/24; SOPORTE_IN bloquea 10.2.30.0/24 → 10.2.20.0/24 y → 10.1.10.0/24 y HTTP a 10.1.100.20. Permitido 10.2.20 → 10.2.30 y 10.2.30 → 10.2.30.1.
 - Pendiente de ACL: prueba HTTP desde VLAN 30 a intranet (requiere nginx en Ubuntu, paso del compañero).
 - Pendiente: Bodega (anunciar desde inicio o en vivo), write memory en R1 y R2 cuando se confirme, ping a 10.1.100.10 desde R1.
+
+## Pendiente guardado para más adelante: decidir Bodega
+- Bodega (VLAN 50, 10.2.50.0/24) NO está anunciada en OSPF ni guardada en R2 (verificado 20-nov).
+- Decidir: anunciarla desde el inicio (guardada) o en vivo durante la demo (recomendado, cumple "incorporar una red y verificar que la ruta se aprende").
+- Si es en vivo: no guardar con `write memory` con Bodega anunciada. Comando en R2: `router ospf 1` → `network 10.2.50.0 0.0.0.255 area 0`. Verificar en R1 con `show ip route ospf`.
+- Sin ese anuncio, el DHCP de VLAN 50 no funciona (R1 no sabe devolver el tráfico a 10.2.50.0).

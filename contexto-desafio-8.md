@@ -300,3 +300,9 @@ interface FastEthernet0/0.30
 - R1 no alcanza 10.1.100.10 (ping 0/5). El Windows Server sí responde a R1 por su propia salida, pero no al ping entrante. Se creó la regla de firewall ICMPv4 entrada (netsh advfirewall firewall add rule ... protocol=icmpv4 dir=in action=allow), pero el ping sigue sin responder. Revisar perfil de red del servidor y estado del firewall.
 - DHCP en Windows Server no se pudo autorizar en AD (PermissionDenied al inicializar recursos). Se decidió DHCP en R1 y R2. Ver sección CAMBIO más arriba.
 - Pendiente: IP fija de Ubuntu (10.1.100.20), registro DNS intranet → 10.1.100.20, ACL VENTAS_IN y SOPORTE_IN, prueba de relay desde Valparaíso, decisión sobre Bodega (anunciar desde inicio o en vivo) y write memory en R1 y R2.
+
+## Avance 20-nov-2026 (tarde)
+- Relay DHCP de Valparaíso probado con VPCS: PC1 (VLAN 20) → 10.2.20.100; PC2 (VLAN 30) → 10.2.30.100. Servidor DHCP 10.255.12.1 (R1).
+- ACL aplicadas en R2 y probadas: VENTAS_IN bloquea 10.2.20.0/24 → 10.1.10.0/24; SOPORTE_IN bloquea 10.2.30.0/24 → 10.2.20.0/24 y → 10.1.10.0/24 y HTTP a 10.1.100.20. Permitido 10.2.20 → 10.2.30 y 10.2.30 → 10.2.30.1.
+- Pendiente de ACL: prueba HTTP desde VLAN 30 a intranet (requiere nginx en Ubuntu, paso del compañero).
+- Pendiente: Bodega (anunciar desde inicio o en vivo), write memory en R1 y R2 cuando se confirme, ping a 10.1.100.10 desde R1.

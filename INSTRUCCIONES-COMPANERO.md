@@ -62,3 +62,9 @@ Si no ves vecinos, revisa `show ip interface brief` y que FastEthernet0/1 esté 
 
 ## Cambio 19-nov-2026
 - DHCP movido a R1 (pools por VLAN) porque Windows Server no pudo autorizar DHCP en AD. R2 hace relay a R1 (10.255.12.1). Detalles en contexto-desafio-8.md.
+
+## Estado al 20-nov-2026 (retomar desde aquí)
+- Ya funciona: GNS3 con Cloud1 → VMnet2, Switch1 puerto 3 VLAN 100, Windows Server en 10.1.100.10 (DC), DHCP en R1 para VLAN 10/40/20/30/50 (R2 hace relay a 10.255.12.1). Cliente Windows 10 en VLAN 10 recibe IP y sale por 10.1.10.1.
+- Problema abierto: R1 no puede hacer ping a 10.1.100.10 (el servidor no responde ICMP entrante). Revisar firewall/perfil de red de Windows Server antes de seguir.
+- Falta: IP fija Ubuntu 10.1.100.20, registro DNS intranet, ACL, prueba de relay desde Valparaíso y decisión sobre Bodega.
+- Detalles completos en contexto-desafio-8.md.

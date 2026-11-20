@@ -286,3 +286,17 @@ interface FastEthernet0/0.30
 - **Exclusiones:** 10.x.x.1 a 10.x.x.99 en cada subred. Pools de .100 a .200 por defecto de IOS.
 - **Pendiente para la presentación:** explicar que el DHCP está en el router por limitación de autorización de AD, y que el Windows Server cumple como DNS y controlador de dominio.
 - Los comentarios "CAMBIO 19-nov-2026" en los archivos de configuración indican exactamente qué cambió.
+
+## Estado al 20-nov-2026 (para retomar)
+
+**Listo y verificado:**
+- Cloud1 conectado a VMnet2 y al puerto 3 de Switch1 (VLAN 100, access). Ping de Windows Server a R1 (10.1.100.1) responde 4/4.
+- R1: OSPF FULL con R2. DHCP local con pools VLAN 10, 40 (Santiago), 20, 30, 50 (Valparaíso). Exclusiones correctas (.1 a .99 de cada subred).
+- Windows 10 en puerto 1 de Switch1 (VLAN 10): recibe 10.1.10.100, puerta 10.1.10.1, sufijo technomarket.lan. R1 le hace ping 5/5.
+- Windows Server 2019 (WIN-N7GHMKRHJAN): IP 10.1.100.10/24, puerta 10.1.100.1, promovido a DC del dominio technomarket.lan. nltest encuentra el DC.
+- R2: relay DHCP a 10.255.12.1 en VLAN 20, 30 y 50.
+
+**Pendiente / problema abierto:**
+- R1 no alcanza 10.1.100.10 (ping 0/5). El Windows Server sí responde a R1 por su propia salida, pero no al ping entrante. Se creó la regla de firewall ICMPv4 entrada (netsh advfirewall firewall add rule ... protocol=icmpv4 dir=in action=allow), pero el ping sigue sin responder. Revisar perfil de red del servidor y estado del firewall.
+- DHCP en Windows Server no se pudo autorizar en AD (PermissionDenied al inicializar recursos). Se decidió DHCP en R1 y R2. Ver sección CAMBIO más arriba.
+- Pendiente: IP fija de Ubuntu (10.1.100.20), registro DNS intranet → 10.1.100.20, ACL VENTAS_IN y SOPORTE_IN, prueba de relay desde Valparaíso, decisión sobre Bodega (anunciar desde inicio o en vivo) y write memory en R1 y R2.

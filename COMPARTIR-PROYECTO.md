@@ -19,3 +19,7 @@ Excluir en todas: `*.log`, `*.scoreboard`, `*.lck`.
 1. Instalar VMware Workstation y crear VMnet2 (host-only, sin DHCP, 192.168.71.0/24).
 2. Poner la imagen IOS c2691 en la plantilla de GNS3 (Dynamips, 192 MiB) y seleccionarla.
 3. Copiar el proyecto a su carpeta de GNS3 y abrir `Desafio8-OSPF.gns3`. Revisar que Cloud1 use "VMware Network Adapter VMnet2".
+
+## Ubicación en Google Drive
+Carpeta `TAS` (contiene `Windows Server 2019`, `Windows 10 x64` y `Ubuntu (64 bits)`):
+https://drive.google.com/drive/u/0/folders/1ug4Siy7FCB9hwsE6Q3upiuEVoh0WSfI8

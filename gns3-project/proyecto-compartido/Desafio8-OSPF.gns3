@@ -287,12 +287,12 @@
                 "label": {
                     "rotation": 0,
                     "style": "font-family: TypeWriter;font-size: 10.0;font-weight: bold;fill: #000000;fill-opacity: 1.0;",
-                    "text": "R1",
-                    "x": 17,
+                    "text": "RTR-Santiago",
+                    "x": -29,
                     "y": -25
                 },
                 "locked": false,
-                "name": "R1",
+                "name": "RTR-Santiago",
                 "node_id": "7d30df0f-bd89-454c-be35-e39004a37c4e",
                 "node_type": "dynamips",
                 "port_name_format": "Ethernet{0}",
@@ -343,12 +343,12 @@
                 "label": {
                     "rotation": 0,
                     "style": "font-family: TypeWriter;font-size: 10.0;font-weight: bold;fill: #000000;fill-opacity: 1.0;",
-                    "text": "R2",
-                    "x": 17,
+                    "text": "RTR-Valparaiso",
+                    "x": -36,
                     "y": -25
                 },
                 "locked": false,
-                "name": "R2",
+                "name": "RTR-Valparaiso",
                 "node_id": "11589b80-9ef9-48ae-a3f5-4c0aaafc5073",
                 "node_type": "dynamips",
                 "port_name_format": "Ethernet{0}",
@@ -399,12 +399,12 @@
                 "label": {
                     "rotation": 0,
                     "style": "font-family: TypeWriter;font-size: 10.0;font-weight: bold;fill: #000000;fill-opacity: 1.0;",
-                    "text": "Switch1",
-                    "x": -3,
+                    "text": "SW-Santiago",
+                    "x": -24,
                     "y": -25
                 },
                 "locked": false,
-                "name": "Switch1",
+                "name": "SW-Santiago",
                 "node_id": "69c0a6fc-9f96-480d-b2dd-315cace1fcea",
                 "node_type": "ethernet_switch",
                 "port_name_format": "Ethernet{0}",
@@ -483,12 +483,12 @@
                 "label": {
                     "rotation": 0,
                     "style": "font-family: TypeWriter;font-size: 10.0;font-weight: bold;fill: #000000;fill-opacity: 1.0;",
-                    "text": "Switch2",
-                    "x": -3,
+                    "text": "SW-Valparaiso",
+                    "x": -30,
                     "y": -25
                 },
                 "locked": false,
-                "name": "Switch2",
+                "name": "SW-Valparaiso",
                 "node_id": "2209edf0-5eeb-4cce-896b-ea046be987ab",
                 "node_type": "ethernet_switch",
                 "port_name_format": "Ethernet{0}",
@@ -567,12 +567,12 @@
                 "label": {
                     "rotation": 0,
                     "style": "font-family: TypeWriter;font-size: 10.0;font-weight: bold;fill: #000000;fill-opacity: 1.0;",
-                    "text": "Cloud1",
-                    "x": 45,
+                    "text": "Cloud-VMnet2",
+                    "x": 15,
                     "y": -25
                 },
                 "locked": false,
-                "name": "Cloud1",
+                "name": "Cloud-VMnet2",
                 "node_id": "986689d6-c9eb-4cb4-b625-d696b7427e34",
                 "node_type": "cloud",
                 "port_name_format": "Ethernet{0}",
@@ -626,8 +626,8 @@
                 "symbol": ":/symbols/cloud.svg",
                 "template_id": "39e257dc-8412-3174-b6b3-0ee3ed6a43e9",
                 "width": 159,
-                "x": -469,
-                "y": 229,
+                "x": -3,
+                "y": 149,
                 "z": 1
             },
             {
@@ -641,12 +641,12 @@
                 "label": {
                     "rotation": 0,
                     "style": "font-family: TypeWriter;font-size: 10.0;font-weight: bold;fill: #000000;fill-opacity: 1.0;",
-                    "text": "Windows10x64-1",
-                    "x": -47,
+                    "text": "Win10-Santiago",
+                    "x": -40,
                     "y": -25
                 },
                 "locked": false,
-                "name": "Windows10x64-1",
+                "name": "Win10-Santiago",
                 "node_id": "20b9fe35-55f6-4dfb-8c2b-25aa2e9fbf94",
                 "node_type": "vmware",
                 "port_name_format": "Ethernet{0}",
@@ -664,8 +664,8 @@
                 "symbol": ":/symbols/vmware_guest.svg",
                 "template_id": "081b7a2f-ce58-41f4-8562-7bf706463068",
                 "width": 65,
-                "x": -737,
-                "y": 46,
+                "x": -536,
+                "y": 179,
                 "z": 1
             },
             {
@@ -679,12 +679,12 @@
                 "label": {
                     "rotation": 0,
                     "style": "font-family: TypeWriter;font-size: 10.0;font-weight: bold;fill: #000000;fill-opacity: 1.0;",
-                    "text": "PC1",
-                    "x": 12,
+                    "text": "PC-Valpo-1",
+                    "x": -19,
                     "y": -25
                 },
                 "locked": false,
-                "name": "PC1",
+                "name": "PC-Valpo-1",
                 "node_id": "3607f04d-9df4-4644-8479-03d39ce6ddce",
                 "node_type": "vpcs",
                 "port_name_format": "Ethernet{0}",
@@ -693,8 +693,8 @@
                 "symbol": ":/symbols/vpcs_guest.svg",
                 "template_id": "19021f99-e36f-394d-b4a1-8aaa902ab9cc",
                 "width": 65,
-                "x": 33,
-                "y": 303,
+                "x": 188,
+                "y": 317,
                 "z": 1
             },
             {
@@ -708,12 +708,12 @@
                 "label": {
                     "rotation": 0,
                     "style": "font-family: TypeWriter;font-size: 10.0;font-weight: bold;fill: #000000;fill-opacity: 1.0;",
-                    "text": "PC2",
-                    "x": 12,
+                    "text": "PC-Valpo-2",
+                    "x": -19,
                     "y": -25
                 },
                 "locked": false,
-                "name": "PC2",
+                "name": "PC-Valpo-2",
                 "node_id": "0f16f745-c215-46cd-af74-cc5c5cb7736b",
                 "node_type": "vpcs",
                 "port_name_format": "Ethernet{0}",
@@ -722,8 +722,8 @@
                 "symbol": ":/symbols/vpcs_guest.svg",
                 "template_id": "19021f99-e36f-394d-b4a1-8aaa902ab9cc",
                 "width": 65,
-                "x": -60,
-                "y": 366,
+                "x": 455,
+                "y": 319,
                 "z": 1
             },
             {
@@ -737,12 +737,12 @@
                 "label": {
                     "rotation": 0,
                     "style": "font-family: TypeWriter;font-size: 10.0;font-weight: bold;fill: #000000;fill-opacity: 1.0;",
-                    "text": "PC3",
-                    "x": 12,
+                    "text": "PC-Santiago",
+                    "x": -24,
                     "y": -25
                 },
                 "locked": false,
-                "name": "PC3",
+                "name": "PC-Santiago",
                 "node_id": "633be47e-ccc0-46be-afdd-5886a94d3513",
                 "node_type": "vpcs",
                 "port_name_format": "Ethernet{0}",
@@ -751,8 +751,8 @@
                 "symbol": ":/symbols/vpcs_guest.svg",
                 "template_id": "19021f99-e36f-394d-b4a1-8aaa902ab9cc",
                 "width": 65,
-                "x": -499,
-                "y": 366,
+                "x": -275,
+                "y": 344,
                 "z": 1
             }
         ]

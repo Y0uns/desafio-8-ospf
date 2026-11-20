@@ -68,3 +68,18 @@ Si no ves vecinos, revisa `show ip interface brief` y que FastEthernet0/1 esté 
 - Problema abierto: R1 no puede hacer ping a 10.1.100.10 (el servidor no responde ICMP entrante). Revisar firewall/perfil de red de Windows Server antes de seguir.
 - Falta: IP fija Ubuntu 10.1.100.20, registro DNS intranet, ACL, prueba de relay desde Valparaíso y decisión sobre Bodega.
 - Detalles completos en contexto-desafio-8.md.
+
+## Reparto de tareas (20-nov-2026)
+
+**Tareas del compañero (requieren las VMs Windows y Ubuntu):**
+- Resolver el ping de R1 a 10.1.100.10 (firewall o perfil de red de Windows Server). Ya se creó la regla ICMPv4 entrante, pero R1 aún no llega.
+- Crear el registro DNS `intranet` → 10.1.100.20 en la zona `technomarket.lan` del servidor.
+- IP fija de Ubuntu: 10.1.100.20/24, puerta 10.1.100.1, DNS 10.1.100.10. Verificar que nginx responda en intranet.technomarket.lan.
+- Probar Windows 10 (VLAN 10) accediendo a la intranet.
+
+**Tareas del líder (solo routers y VPCS, poca RAM):**
+- Probar el relay desde Valparaíso con un VPCS en el puerto 1 de Switch2 (VLAN 20): `ip dhcp` y `show ip` deben dar 10.2.20.100–200 con puerta 10.2.20.1.
+- Aplicar las ACL VENTAS_IN y SOPORTE_IN en R2 (borrador en contexto-desafio-8.md) y probar con VPCS: VLAN 20 → 10.1.10.1 denegado; VLAN 30 → 10.2.20.1 denegado; VLAN 20 → 10.2.30.1 permitido.
+- Decidir si Bodega se anuncia desde el inicio o en vivo, y documentarlo.
+- Preparar la demo de 15 minutos: comandos a mostrar (`show ip ospf neighbor`, `show ip route ospf`, `show ip dhcp binding`, pruebas de ping) y la explicación del cambio de DHCP a los routers.
+

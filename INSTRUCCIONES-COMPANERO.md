@@ -2,6 +2,21 @@
 
 Este documento explica cómo abrir el proyecto, en qué estado está y qué falta. Lee primero `contexto-desafio-8.md`.
 
+## Nombres en GNS3 (equivalencias)
+Los equipos del proyecto se renombraron en GNS3. Las configuraciones y la documentación siguen usando los nombres de la izquierda.
+
+| Nombre antiguo (docs y configs) | Nombre en GNS3 |
+|---|---|
+| R1 | RTR-Santiago |
+| R2 | RTR-Valparaiso |
+| Switch1 | SW-Santiago |
+| Switch2 | SW-Valparaiso |
+| PC3 | PC-Santiago |
+| PC1 | PC-Valpo-1 |
+| PC2 | PC-Valpo-2 |
+| Cloud1 | Cloud-VMnet2 |
+| Windows10x64-1 | Win10-Santiago |
+
 ## 1. Requisitos
 - GNS3 2.2.55.
 - Imagen Cisco `c2691-adventerprisek9_sna-mz.124-13b.image` (no está en el repositorio; la consigues con el profesor o en el aula virtual).

@@ -7,7 +7,7 @@ Proyecto del ramo Taller de Administración de Sistemas (USM, EIN-090B). Equipo 
 
 ## Simulación
 - GNS3 2.2.55 con routers Cisco c2691 (imagen c2691-adventerprisek9_sna-mz.124-13b.image, no incluida).
-- Switch1 (Santiago) y Switch2 (Valparaíso) de GNS3.
+- SW-Santiago (antes Switch1) y SW-Valparaiso (antes Switch2) de GNS3. La tabla de equivalencias de nombres está en `INSTRUCCIONES-COMPANERO.md`.
 - Servidores en VMware Workstation: Windows Server 2019 (DHCP y DNS) y Ubuntu 22.04 (nginx).
 
 ## Nota

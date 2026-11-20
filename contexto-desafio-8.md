@@ -312,3 +312,7 @@ interface FastEthernet0/0.30
 - Decidir: anunciarla desde el inicio (guardada) o en vivo durante la demo (recomendado, cumple "incorporar una red y verificar que la ruta se aprende").
 - Si es en vivo: no guardar con `write memory` con Bodega anunciada. Comando en R2: `router ospf 1` → `network 10.2.50.0 0.0.0.255 area 0`. Verificar en R1 con `show ip route ospf`.
 - Sin ese anuncio, el DHCP de VLAN 50 no funciona (R1 no sabe devolver el tráfico a 10.2.50.0).
+
+## Verificado 20-nov-2026 (tarde)
+- DHCP local de R1 probado en las 5 VLAN cliente: VLAN 10 (Windows 10 → 10.1.10.100), VLAN 40 (VPCS PC3 → 10.1.40.100), VLAN 20 (PC1 → 10.2.20.100), VLAN 30 (PC2 → 10.2.30.100). VLAN 50 pendiente hasta anunciar Bodega.
+- Todos reciben DNS 10.1.100.10 y dominio technomarket.lan.

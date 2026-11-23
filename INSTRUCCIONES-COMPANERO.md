@@ -43,15 +43,15 @@ Abre la consola de cada router (clic derecho > Console) y ejecuta:
 Si no ves vecinos, revisa `show ip interface brief` y que FastEthernet0/1 esté `up/up` en ambos.
 
 ## 4. Consideraciones importantes
-- **Bodega (10.2.50.0/24):** en la configuración guardada de R2 ya está anunciada. La prueba 7 de la demostración pide que R1 NO tenga ruta a esa red antes de anunciarla. Antes de probar, quita el anuncio en R2:
+- **Bodega (10.2.50.0/24) se anuncia en vivo durante la demostración.** En la configuración guardada de R2 NO está anunciada, así que no hay que quitar nada. Antes de la prueba 7, R1 no debe tener ruta a 10.2.50.0/24 (`show ip route 10.2.50.0` debe dar "not in table"). Luego, en R2:
   ```
   configure terminal
   router ospf 1
-  no network 10.2.50.0 0.0.0.255 area 0
+  network 10.2.50.0 0.0.0.255 area 0
   end
   ```
-  Luego vuelve a anunciarla durante la demostración con `network 10.2.50.0 0.0.0.255 area 0`.
-- **No guardes Bodega sin decidirlo:** si haces `write memory` con Bodega anunciada, la prueba 7 no se puede mostrar después de reiniciar.
+  Después verifica en R1 con `show ip route ospf` que aparezca 10.2.50.0/24 vía 10.255.12.2.
+- **No guardes R2 con `write memory` después de anunciar Bodega.** Si lo haces, la prueba 7 no se puede repetir después de reiniciar.
 - Las interfaces de las VLAN de clientes (10, 40, 20, 30 y 50) son pasivas. Eso es correcto: no deben formar adyacencias.
 
 ## 5. Estado de la infraestructura
@@ -95,6 +95,6 @@ Si no ves vecinos, revisa `show ip interface brief` y que FastEthernet0/1 esté 
 **Tareas del líder (solo routers y VPCS, poca RAM):**
 - Probar el relay desde Valparaíso con un VPCS en el puerto 1 de Switch2 (VLAN 20): `ip dhcp` y `show ip` deben dar 10.2.20.100–200 con puerta 10.2.20.1.
 - Aplicar las ACL VENTAS_IN y SOPORTE_IN en R2 (borrador en contexto-desafio-8.md) y probar con VPCS: VLAN 20 → 10.1.10.1 denegado; VLAN 30 → 10.2.20.1 denegado; VLAN 20 → 10.2.30.1 permitido.
-- Decidir si Bodega se anuncia desde el inicio o en vivo, y documentarlo.
+- Bodega: anunciar en vivo en R2 durante la demostración (decidido, ver sección 4).
 - Preparar la demo de 15 minutos: comandos a mostrar (`show ip ospf neighbor`, `show ip route ospf`, `show ip dhcp binding`, pruebas de ping) y la explicación del cambio de DHCP a los routers.
 

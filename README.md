@@ -4,6 +4,7 @@ Proyecto del ramo Taller de Administración de Sistemas (USM, EIN-090B). Equipo 
 
 ## Contenido
 - `contexto-desafio-8.md`: contexto completo del proyecto, decisiones, topología, direccionamiento, configuración verificada en R1 y R2, estado de la infraestructura y pendientes.
+- `guia-vmware-gns3.md`: cómo dejar funcionando las VMs de VMware dentro de GNS3 (VMnet2, conflicto de IP 10.1.100.1, disco de Win10, puertos del switch), orden de encendido, pruebas verificadas el 23-11-2026, guion de la demo de Bodega y solución de problemas.
 
 ## Simulación
 - GNS3 2.2.55 con routers Cisco c2691 (imagen c2691-adventerprisek9_sna-mz.124-13b.image, no incluida).

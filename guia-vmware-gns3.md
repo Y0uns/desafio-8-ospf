@@ -161,7 +161,7 @@ ip access-list extended SOPORTE_NO_VENTAS
  10 deny ip 10.1.40.0 0.0.0.255 10.1.10.0 0.0.0.255
  20 permit ip any any
 ```
-> Los nombres internos de los pools y de la ACL usan "Ventas/Soporte" para Santiago. Corresponden a VLAN 10 Administración y VLAN 40 TI.
+> Los nombres internos vienen del primer plan y no coinciden con los sectores finales: `VLAN10-Santiago-Ventas` = VLAN 10 Administración, `VLAN40-Santiago-Soporte` = VLAN 40 TI, `VLAN50-Valparaiso` = VLAN 50 Bodega, y `SOPORTE_NO_VENTAS` bloquea TI → Administración. Se dejaron así para no tocar el router antes de la demo. La tabla completa está en `INSTRUCCIONES-COMPANERO.md`.
 
 ### RTR-Valparaiso (R2, router-id 2.2.2.2)
 ```

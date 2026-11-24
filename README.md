@@ -9,14 +9,15 @@ Proyecto del ramo Taller de Administración de Sistemas (USM, EIN-090B). Equipo 
 ## Simulación
 - GNS3 2.2.55 con routers Cisco c2691 (imagen c2691-adventerprisek9_sna-mz.124-13b.image, no incluida).
 - SW-Santiago (antes Switch1) y SW-Valparaiso (antes Switch2) de GNS3. La tabla de equivalencias de nombres está en `INSTRUCCIONES-COMPANERO.md`.
-- Servidores en VMware Workstation: Windows Server 2019 (DHCP y DNS) y Ubuntu 22.04 (nginx).
+- Servidores en VMware Workstation: Windows Server 2019 (Active Directory y DNS) y Ubuntu 22.04 (nginx). El DHCP lo entrega R1 (RTR-Santiago); R2 hace relay.
 
 ## Nota
 Este repositorio no incluye imágenes de Cisco, ISO de sistemas operativos, discos de máquinas virtuales ni contraseñas.
 
 ## Proyecto GNS3 (carpeta `gns3-project/`)
-- `Desafio8-OSPF.gns3`: topología con R1, R2, Switch1 y Switch2 y sus enlaces.
-- `R1-startup-config.cfg` y `R2-startup-config.cfg`: configuraciones de inicio de los routers (VLAN, OSPF y relay).
+- **`proyecto-compartido/Desafio8-OSPF.gns3`: proyecto oficial y actualizado (23-11-2026), con nombres finales, PCs por VLAN y recuadros de color. Usar este.**
+- `Desafio8-OSPF.gns3` (raíz de la carpeta): versión inicial solo con R1, R2, Switch1 y Switch2. Se mantiene como referencia.
+- `R1-startup-config.cfg` y `R2-startup-config.cfg`: configuraciones de inicio comentadas de los routers (VLAN, OSPF, DHCP, relay y ACL). Coinciden con las del proyecto compartido.
 
 ### Para abrirlo
 1. Instala la imagen `c2691-adventerprisek9_sna-mz.124-13b.image` en GNS3 como plantilla Dynamips c2691 (RAM 192 MiB). No está en el repositorio.

@@ -1,7 +1,7 @@
 # Compartir el proyecto y las VMs con el compañero
 
 ## En GitHub (esta carpeta)
-- `gns3-project/proyecto-compartido/`: proyecto GNS3 (`Desafio8-OSPF.gns3`), startups de VPCS (PC1-PC3) y startups de R1 y R2.
+- `gns3-project/proyecto-compartido/`: proyecto GNS3 oficial (`Desafio8-OSPF.gns3`, copiado del PC el 23-11-2026, con nombres finales y recuadros por VLAN), startups de VPCS (PC-TI, PC-Ventas, PC-Soporte, PC-Bodega) y startups de R1 y R2 (incluye las 3 ACL).
 - No incluye el IOS c2691 ni archivos de runtime (logs, locks, ROM, NVRAM, ilt_*).
 
 ## Fuera de GitHub (~47 GB, no caben en GitHub)
@@ -16,9 +16,11 @@ Excluir en todas: `*.log`, `*.scoreboard`, `*.lck`.
 - Runtime de GNS3 (se regenera): `*_lock`, `*_log.txt`, `*_stdout.txt`, `ubridge.log`, `vpcs.log`, `ilt_*`, `*_rom`, `*_slot0`, `*_slot1`, `*_ssa`, `*_rommon_vars`.
 
 ## Para el compañero
-1. Instalar VMware Workstation y crear VMnet2 (host-only, sin DHCP, 192.168.71.0/24).
+1. Instalar VMware Workstation y crear VMnet2 (host-only, sin DHCP, 192.168.71.0/24). Crearlo **antes** de abrir GNS3.
+   - ⚠️ Revisar con `ipconfig` la IP del adaptador "VMware Network Adapter VMnet2" del PC. **No puede ser 10.1.100.1**, porque choca con el gateway de R1 y Windows Server deja de responder. Si lo es, cambiarla a 10.1.100.254 (ver `guia-vmware-gns3.md`, sección 3.2).
 2. Poner la imagen IOS c2691 en la plantilla de GNS3 (Dynamips, 192 MiB) y seleccionarla.
-3. Copiar el proyecto a su carpeta de GNS3 y abrir `Desafio8-OSPF.gns3`. Revisar que Cloud1 use "VMware Network Adapter VMnet2".
+3. Copiar el proyecto a su carpeta de GNS3 y abrir `Desafio8-OSPF.gns3`. Revisar que Cloud-VMnet2 use "VMware Network Adapter VMnet2".
+4. El nodo Win10-Admin apunta a `C:\Users\megav\Desktop\Maquinas\Windows 10 x64\Windows 10 x64.vmx`. En otro PC, hay que volver a elegir la VM en la configuración del nodo (clic derecho → Configure).
 
 ## Ubicación en Google Drive
 Carpeta `TAS` (contiene `Windows Server 2019`, `Windows 10 x64` y `Ubuntu (64 bits)`):

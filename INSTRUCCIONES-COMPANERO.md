@@ -2,20 +2,39 @@
 
 Este documento explica cómo abrir el proyecto, en qué estado está y qué falta. Lee primero `contexto-desafio-8.md`.
 
-## Nombres en GNS3 (equivalencias)
-Los equipos del proyecto se renombraron en GNS3. Las configuraciones y la documentación siguen usando los nombres de la izquierda.
+## Estado al 23-nov-2026: todo funcionando (leer primero)
+Todas las pruebas pasaron el 23-11-2026: OSPF, DHCP con relay, DNS, AD, intranet, ACL y conectividad entre sedes.
+La guía paso a paso para dejar las VMs funcionando en GNS3, el orden de encendido, las pruebas y el guion de la demo están en **`guia-vmware-gns3.md`**.
+Las secciones 5 y 6, y las notas del 20-nov, son históricas.
 
-| Nombre antiguo (docs y configs) | Nombre en GNS3 |
+## Nombres en GNS3 (equivalencias)
+El proyecto oficial es `gns3-project/proyecto-compartido/Desafio8-OSPF.gns3`, que ya trae los nombres finales y los recuadros de color por VLAN.
+Los `.cfg` y los documentos antiguos usan los nombres de la columna izquierda.
+
+| Nombre antiguo (docs y configs) | Nombre intermedio | Nombre final en GNS3 | VLAN |
+|---|---|---|---|
+| R1 | RTR-Santiago | RTR-Santiago | troncal |
+| R2 | RTR-Valparaiso | RTR-Valparaiso | troncal |
+| Switch1 | SW-Santiago | SW-Santiago | — |
+| Switch2 | SW-Valparaiso | SW-Valparaiso | — |
+| Cloud1 | Cloud-VMnet2 | Cloud-VMnet2 | 100 Servidores |
+| Windows10x64-1 | Win10-Santiago | **Win10-Admin** | 10 Administración |
+| PC3 | PC-Santiago | **PC-TI** | 40 TI |
+| PC1 | PC-Valpo-1 | **PC-Ventas** | 20 Ventas |
+| PC2 | PC-Valpo-2 | **PC-Soporte** | 30 Soporte |
+| — | — | **PC-Bodega** (nuevo) | 50 Bodega |
+
+### Nombres internos en los routers
+Los nombres de los pools DHCP y de una ACL vienen del primer plan, así que no coinciden con los sectores finales. Funcionan bien; solo cambia la etiqueta.
+
+| En el router | Corresponde a |
 |---|---|
-| R1 | RTR-Santiago |
-| R2 | RTR-Valparaiso |
-| Switch1 | SW-Santiago |
-| Switch2 | SW-Valparaiso |
-| PC3 | PC-Santiago |
-| PC1 | PC-Valpo-1 |
-| PC2 | PC-Valpo-2 |
-| Cloud1 | Cloud-VMnet2 |
-| Windows10x64-1 | Win10-Santiago |
+| Pool `VLAN10-Santiago-Ventas` | VLAN 10 Administración |
+| Pool `VLAN40-Santiago-Soporte` | VLAN 40 TI |
+| Pool `VLAN50-Valparaiso` | VLAN 50 Bodega |
+| ACL `SOPORTE_NO_VENTAS` (R1, Fa0/0.40 in) | Bloquea TI (VLAN 40) → Administración (VLAN 10) |
+| ACL `VENTAS_IN` (R2, Fa0/0.20 in) | Bloquea Ventas Valpo (VLAN 20) → Administración (VLAN 10) |
+| ACL `SOPORTE_IN` (R2, Fa0/0.30 in) | Bloquea Soporte Valpo → Ventas Valpo, → Administración y HTTP a la intranet |
 
 ## 1. Requisitos
 - GNS3 2.2.55.
